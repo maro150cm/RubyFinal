@@ -1,0 +1,22 @@
+<h1>節次清單</h1>
+<table class="table table-hover">
+    <tr>
+        <td>節次</td>
+        <td>開始時間</td>
+        <td>結束時間</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <% @parttimes.each do |parttime| %>
+        <tr>
+            <td><%= parttime.part_number %></td>
+            <td><%= parttime.start_time.strftime("%H:%M") %></td>
+            <td><%= parttime.end_time.strftime("%H:%M") %></td>
+            <td><%= link_to '編輯', edit_parttime_path(parttime),class:"btn btn-info" %></td>
+            <td><%= link_to '刪除',parttime_path(parttime), method: :delete, data: { confirm: '你確定要刪除?' },class:"btn btn-info" %></td>
+        </tr>
+    <% end %>
+</table>
+<br>
+
+<%= link_to '新增', new_parttime_path,class:"btn btn-info" %>

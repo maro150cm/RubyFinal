@@ -1,0 +1,35 @@
+<%= form_for(@teacher) do |f| %>
+    <% if @teacher.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= @teacher.errors.count %>個填寫資料錯誤:</h2>
+
+          <ul>
+              <% @teacher.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <%= f.label "老師ID" %><br>
+    <%= f.text_field :teach_id %><br>
+    
+    <%= f.label "老師姓名" %><br>
+    <%= f.text_field :teach_name %><br>    
+    
+    <%= f.label "老師性別" %><br>
+    <%= f.text_field :teach_gender %><br>
+    
+    <%= f.label "老師職等" %><br>
+    <%= f.text_field :teach_level %><br>
+    
+    <%= f.label "郵遞區號" %><br>
+    <%= f.text_field :addr_no %><br>
+    
+    <%= f.label "地址" %><br>
+    <%= f.text_field :address %><br>
+    
+    <%= f.label "電話" %><br>
+    <%= f.text_field :tel %><br>
+    <br/><br/>
+    <%= f.submit "新增",class:'btn btn-primary' %> | <%= link_to '清單', teachers_path,class:'btn btn-primary' %>
+<% end %>

@@ -1,0 +1,22 @@
+<%= form_for(@parttime) do |f| %>
+    <% if @parttime.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= @parttime.errors.count %>個填寫資料錯誤:</h2>
+
+          <ul>
+              <% @parttime.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <%= f.label "節次" %><br>
+    <%= f.number_field :part_number %><br>
+    <%= f.label "開始時間" %><br>
+    <%= f.time_field :start_time %><br>
+    <%= f.label "結束時間" %><br>
+    <%= f.time_field :end_time %><br>
+    <br/><br/>
+    <%= f.submit "確定",class:"btn btn-primary" %> |
+    <%= link_to '清單', parttimes_path,class:"btn btn-primary" %>
+<% end %>

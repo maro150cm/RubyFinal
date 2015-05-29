@@ -1,0 +1,20 @@
+<%= form_for(@partweek) do |f| %>
+    <% if @partweek.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= @partweek.errors.count %>個填寫資料錯誤:</h2>
+
+          <ul>
+              <% @partweek.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <%= f.label "天數" %><br>
+    <%= f.number_field :day_number %><br>
+    <%= f.label "星期" %><br>
+    <%= f.text_field :week_name %><br>
+    <br/><br/>
+    <%= f.submit "確定",class:"btn btn-primary" %> |
+    <%= link_to '清單', partweeks_path,class:"btn btn-primary" %>
+<% end %>

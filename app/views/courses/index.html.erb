@@ -1,0 +1,33 @@
+<h1>課程清單</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>學年度</th>
+      <th>學期</th>
+      <th>課程ID</th>
+      <th>課程名稱</th>
+      <th>學分數</th>
+      <th>面授學分</th>
+      <th>課程種類</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @courses.each do |course| %>
+      <tr>
+        <td><%= course.learn_year %></td>
+        <td><%= course.year_part %></td>
+        <td><%= course.course_id %></td>
+        <td><%= course.course_name %></td>
+        <td><%= course.learn_point %></td>
+        <td><%= course.entity_point %></td>
+        <td><%= course.course_kind %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+
+<%= link_to '新增', new_course_path,class:"btn btn-info" %> |
+<%= link_to '排課', works_path,class:"btn btn-info" %>

@@ -1,0 +1,20 @@
+<h1>天數清單</h1>
+<table class="table table-hover">
+    <tr>
+        <td>天數</td>
+        <td>星期</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <% @partweeks.each do |partweek| %>
+        <tr>
+            <td><%= partweek.day_number %></td>
+            <td><%= partweek.week_name %></td>
+            <td><%= link_to '編輯', edit_partweek_path(partweek),class:"btn btn-info" %></td>
+            <td><%= link_to '刪除',partweek_path(partweek), method: :delete, data: { confirm: '你確定要刪除?' },class:"btn btn-info" %></td>
+        </tr>
+    <% end %>
+</table>
+<br>
+
+<%= link_to '新增', new_partweek_path,class:"btn btn-info" %>

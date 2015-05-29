@@ -1,0 +1,26 @@
+<%= form_for(@work) do |f| %>
+    <% if @work.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= @work.errors.count %>個填寫資料錯誤:</h2>
+
+          <ul>
+              <% @work.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <%= f.label "班級" %><br>
+    <%= f.collection_select(:group_id,Group.all,:id,:group_name) %><br>
+    <%= f.label "星期" %><br>
+    <%= f.collection_select(:partweek_id,Partweek.all,:id,:week_name) %><br>
+    <%= f.label "節次" %><br>
+    <%= f.collection_select(:parttime_id,Parttime.all,:id,:part_number) %><br>
+    <%= f.label "課程" %><br>
+    <%= f.collection_select(:course_id,Course.all,:id,:course_name) %><br>
+    <%= f.label "老師" %><br>
+    <%= f.collection_select(:teacher_id,Teacher.all,:id,:teach_name) %><br>
+    <br/><br/>
+    <%= f.submit "確定",class:"btn btn-primary" %> |
+    <%= link_to '清單', works_path,class:"btn btn-primary" %>
+<% end %>

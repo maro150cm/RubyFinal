@@ -1,0 +1,36 @@
+<%= form_for(@course) do |f| %>
+    <% if @course.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= @course.errors.count %>個填寫資料錯誤:</h2>
+
+          <ul>
+              <% @course.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <%= f.label "課程ID" %><br>
+    <%= f.text_field :course_id %><br>
+    
+    <%= f.label "課程名稱" %><br>
+    <%= f.text_field :course_name %><br>    
+    
+    <%= f.label "學分數" %><br>
+    <%= f.number_field :learn_point %><br>
+    
+    <%= f.label "面授學分" %><br>
+    <%= f.number_field :entity_point %><br>
+    
+    <%= f.label "學年度" %><br>
+    <%= f.text_field :learn_year %><br>
+    
+    <%= f.label "學期" %><br>
+    <%= f.text_field :year_part %><br>
+    
+    <%= f.label "課程種類" %><br>
+    <%= f.text_field :course_kind %><br>
+    <br/><br/>
+    <%= f.submit "新增",class:"btn btn-primary" %> |
+    <%= link_to '清單', courses_path,class:"btn btn-primary" %>
+<% end %>

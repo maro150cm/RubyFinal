@@ -1,0 +1,27 @@
+<h1>老師清單</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>老師ID</th>
+      <th>老師姓名</th>
+      <th>老師性別</th>
+      <th>老師職等</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @teachers.each do |teacher| %>
+      <tr>
+        <td><%= teacher.teach_id %></td>
+        <td><%= teacher.teach_name %></td>
+        <td><%= teacher.teach_gender %></td>
+        <td><%= teacher.teach_level %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+
+<%= link_to '新增', new_teacher_path,class:"btn btn-info" %> |
+<%= link_to '排課', works_path,class:"btn btn-info" %>
