@@ -17,11 +17,11 @@
     </tr>
     <% @works.each do |work| %>
         <tr>
-            <td><%= work.group.group_name %></td>
-            <td><%= work.course.course_name %></td>
-            <td><%= work.teacher.teach_name %></td>
-            <td><%= work.partweek.week_name %></td>
-            <td><%= work.parttime.part_number %></td>
+            <td><%= work.group.try(:group_name) %></td>
+            <td><%= work.course.try(:course_name) %></td>
+            <td><%= work.teacher.try(:teach_name) %></td>
+            <td><%= work.partweek.try(:week_name) %></td>
+            <td><%= work.parttime.try(:part_number) %></td>
             <td><%= link_to '編輯', edit_work_path(work),class:"btn btn-info" %></td>
             <td><%= link_to '刪除',work_path(work), method: :delete, data: { confirm: '你確定要刪除?' },class:"btn btn-info" %></td>
         </tr>
