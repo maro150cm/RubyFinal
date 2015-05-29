@@ -3,6 +3,8 @@ class GroupsController < ApplicationController
     
     def index
         @groups = Group.all
+        @parttimes = Parttime.all
+        @partweeks = Partweek.all
     end
 
     def new

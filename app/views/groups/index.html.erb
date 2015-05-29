@@ -19,3 +19,76 @@
     <% end %>
   </tbody>
 </table>
+
+<br/><br/><br/><br/>
+
+<div role="tabpanel">  
+  <ul class="nav nav-tabs" role="tablist">
+    <% @groups.each_with_index do |group, index| %>
+        <% if index==0 %>
+          <li role="presentation" class="active"><a href="#<%= index %>" role="tab" data-toggle="tab"><%= group.group_name %></a></li>
+        <% else %>  
+          <li role="presentation"><a href="#<%= index %>" role="tab" data-toggle="tab"><%= group.group_name %></a></li>
+        <% end %>
+    <% end %>
+  </ul>
+  <div class="tab-content">
+    <% @groups.each_with_index do |group,index| %>
+      <% if index==0 %>
+        <div role="tabpanel" class="tab-pane active" id="<%= index %>">
+            <table class="table">
+                <tr>
+                  <td></td>
+                  <% @partweeks.each do |partweek| %>
+                    <td><%= partweek.week_name %></td>
+                  <% end %>    
+                </tr>
+                <% @parttimes.each do |parttime| %>
+                  <tr>
+                    <td style="height:60px;width:150px;"><%= parttime.start_time.strftime("%H:%M")+"~"+parttime.end_time.strftime("%H:%M") %></td>
+                    <% @partweeks.each do |partweek| %>
+                      <td>
+                        <% @run=show_work(parttime.part_number,partweek.day_number,group.group_name) %>
+                        <% if @run.blank? %>
+                          <%= "" %>
+                        <% else %>
+                          <%= @run.course_name %><br/>
+                          <%= @run.teach_name %><br/>
+                        <% end %>
+                      </td>
+                    <% end %>
+                  </tr>
+                <% end %>
+            </table>
+        </div>
+      <% else %>
+        <div role="tabpanel" class="tab-pane" id="<%= index %>">
+            <table class="table">
+                <tr>
+                  <td></td>
+                  <% @partweeks.each do |partweek| %>
+                    <td><%= partweek.week_name %></td>
+                  <% end %>    
+                </tr>
+                <% @parttimes.each do |parttime| %>
+                  <tr>
+                    <td style="height:60px;width:150px;"><%= parttime.start_time.strftime("%H:%M")+"~"+parttime.end_time.strftime("%H:%M") %></td>
+                    <% @partweeks.each do |partweek| %>
+                      <td>
+                        <% @run=show_work(parttime.part_number,partweek.day_number,group.group_name) %>
+                        <% if @run.blank? %>
+                          <%= "" %>
+                        <% else %>
+                          <%= @run.course_name %><br/>
+                          <%= @run.teach_name %><br/>
+                        <% end %>
+                      </td>
+                    <% end %>
+                  </tr>
+                <% end %>
+            </table>
+        </div>  
+      <% end %>
+    <% end %>
+  </div>
+</div>
