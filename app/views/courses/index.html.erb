@@ -1,5 +1,5 @@
 <h1>課程清單</h1>
-
+<%= link_to '新增', new_course_path,class:"btn btn-info" %><br/>
 <table class="table table-hover">
   <thead>
     <tr>
@@ -27,7 +27,5 @@
     <% end %>
   </tbody>
 </table>
-<br>
 
-<%= link_to '新增', new_course_path,class:"btn btn-info" %> |
-<%= link_to '排課', works_path,class:"btn btn-info" %>
+

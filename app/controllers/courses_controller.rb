@@ -11,7 +11,7 @@ class CoursesController < ApplicationController
   def create
     @course = Course.new(course_params)
     if @course.save
-        redirect_to courses_path
+        redirect_to works_path
     else
         render :new
     end

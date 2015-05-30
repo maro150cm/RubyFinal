@@ -14,14 +14,14 @@ class GroupsController < ApplicationController
     def create
         @group = Group.new(group_params)
         if @group.save
-            redirect_to groups_path
+            redirect_to works_path
         else
             render :new
         end
     end
     def destroy
         @group.destroy
-        redirect_to groups_path
+        redirect_to works_path
     end
 
     private

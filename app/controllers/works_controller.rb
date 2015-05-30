@@ -2,10 +2,12 @@ class WorksController < ApplicationController
     before_action :set_work, only: [:edit, :update,:destroy]
     
     def index
-        @works = Work.all
         @parttimes = Parttime.all
         @partweeks = Partweek.all
+        @teachers = Teacher.all
         @groups = Group.all
+        @courses = Course.all
+        @works = Work.all
     end
     def new
         @work = Work.new

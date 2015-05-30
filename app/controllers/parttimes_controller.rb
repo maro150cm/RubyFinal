@@ -9,21 +9,21 @@ class ParttimesController < ApplicationController
     def create
         @parttime = Parttime.new(parttime_params)
         if @parttime.save
-            redirect_to parttimes_path
+            redirect_to works_path
         else
             render :new
         end
     end
     def update
         if @parttime.update(parttime_params)
-            redirect_to parttimes_path
+            redirect_to works_path
         else
             render :edit
         end
     end
     def destroy
         @parttime.destroy
-        redirect_to parttimes_path
+        redirect_to works_path
     end
     def edit
     end

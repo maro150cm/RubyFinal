@@ -1,22 +1,147 @@
-<h1>排課清單</h1>
-<%= link_to '新增排課', new_work_path,class:'btn btn-info' %> |
-<%= link_to '新增課程', new_course_path,class:'btn btn-info' %> |
-<%= link_to '新增老師', new_teacher_path,class:'btn btn-info' %> |
-<%= link_to '新增班級', new_group_path,class:'btn btn-info' %><br /><br />
+<br/><br/>
+<%= link_to '課表', groups_path,class:"btn btn-info" %><br/><br/>
 
-
-<table class="table table-hover">
-    <tr>
-        <td>班級</td>
-        <td>課程</td>
-        <td>老師</td>
-        <td>星期</td>
-        <td>節次</td>
-        <td></td>
-        <td></td>
-    </tr>
-    <% @works.each do |work| %>
+<div role="tabpanel">  
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#time" role="tab" data-toggle="tab">節次</a></li>
+    <li role="presentation"><a href="#week" role="tab" data-toggle="tab">星期</a></li>
+    <li role="presentation"><a href="#teacher" role="tab" data-toggle="tab">老師</a></li>
+    <li role="presentation"><a href="#group" role="tab" data-toggle="tab">班級</a></li>
+    <li role="presentation"><a href="#course" role="tab" data-toggle="tab">課程</a></li>
+    <li role="presentation"><a href="#work" role="tab" data-toggle="tab">排課</a></li>
+  </ul>
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="time">
+      <h1>節次清單</h1>
+      <%= link_to '新增', new_parttime_path,class:"btn btn-info" %><br/>
+      <table class="table table-hover">
         <tr>
+          <td>節次</td>
+          <td>開始時間</td>
+          <td>結束時間</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <% @parttimes.each do |parttime| %>
+          <tr>
+              <td><%= parttime.part_number %></td>
+              <td><%= parttime.start_time.strftime("%H:%M") %></td>
+              <td><%= parttime.end_time.strftime("%H:%M") %></td>
+              <td><%= link_to '編輯', edit_parttime_path(parttime),class:"btn btn-info" %></td>
+              <td><%= link_to '刪除',parttime_path(parttime), method: :delete, data: { confirm: '你確定要刪除?' },class:"btn btn-info" %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="week">
+      <h1>天數清單</h1>
+      <%= link_to '新增', new_partweek_path,class:"btn btn-info" %><br/>
+      <table class="table table-hover">
+        <tr>
+          <td>天數</td>
+          <td>星期</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <% @partweeks.each do |partweek| %>
+          <tr>
+            <td><%= partweek.day_number %></td>
+            <td><%= partweek.week_name %></td>
+            <td><%= link_to '編輯', edit_partweek_path(partweek),class:"btn btn-info" %></td>
+            <td><%= link_to '刪除',partweek_path(partweek), method: :delete, data: { confirm: '你確定要刪除?' },class:"btn btn-info" %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="teacher">
+      <h1>老師清單</h1>
+      <%= link_to '新增', new_teacher_path,class:"btn btn-info" %><br/>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>老師ID</th>
+            <th>老師姓名</th>
+            <th>老師性別</th>
+            <th>老師職等</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @teachers.each do |teacher| %>
+            <tr>
+              <td><%= teacher.teach_id %></td>
+              <td><%= teacher.teach_name %></td>
+              <td><%= teacher.teach_gender %></td>
+              <td><%= teacher.teach_level %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="group">
+      <h1>班級清單</h1>
+      <%= link_to '新增班級', new_group_path,class:'btn btn-info' %><br/>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>班級名稱</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @groups.each do |group| %>
+            <tr>
+              <td><%= group.group_name %></td>
+              <td><%= link_to '刪除',group_path(group), method: :delete, data: { confirm: '你確定要刪除?' },class:"btn btn-info" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="course">
+      <h1>課程清單</h1>
+      <%= link_to '新增', new_course_path,class:"btn btn-info" %><br/>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>學年度</th>
+            <th>學期</th>
+            <th>課程ID</th>
+            <th>課程名稱</th>
+            <th>學分數</th>
+            <th>面授學分</th>
+            <th>課程種類</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @courses.each do |course| %>
+            <tr>
+              <td><%= course.learn_year %></td>
+              <td><%= course.year_part %></td>
+              <td><%= course.course_id %></td>
+              <td><%= course.course_name %></td>
+              <td><%= course.learn_point %></td>
+              <td><%= course.entity_point %></td>
+              <td><%= course.course_kind %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="work">
+      <h1>排課清單</h1>
+      <%= link_to '新增', new_work_path,class:"btn btn-info" %><br/>
+      <table class="table table-hover">
+        <tr>
+          <td>班級</td>
+          <td>課程</td>
+          <td>老師</td>
+          <td>星期</td>
+          <td>節次</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <% @works.each do |work| %>
+          <tr>
             <td><%= work.group.try(:group_name) %></td>
             <td><%= work.course.try(:course_name) %></td>
             <td><%= work.teacher.try(:teach_name) %></td>
@@ -24,80 +149,10 @@
             <td><%= work.parttime.try(:part_number) %></td>
             <td><%= link_to '編輯', edit_work_path(work),class:"btn btn-info" %></td>
             <td><%= link_to '刪除',work_path(work), method: :delete, data: { confirm: '你確定要刪除?' },class:"btn btn-info" %></td>
-        </tr>
-    <% end %>
-</table>
-
-<br/><br/><br/><br/>
-
-<div role="tabpanel">  
-  <ul class="nav nav-tabs" role="tablist">
-    <% @groups.each_with_index do |group, index| %>
-        <% if index==0 %>
-          <li role="presentation" class="active"><a href="#<%= index %>" role="tab" data-toggle="tab"><%= group.group_name %></a></li>
-        <% else %>  
-          <li role="presentation"><a href="#<%= index %>" role="tab" data-toggle="tab"><%= group.group_name %></a></li>
+          </tr>
         <% end %>
-    <% end %>
-  </ul>
-  <div class="tab-content">
-    <% @groups.each_with_index do |group,index| %>
-      <% if index==0 %>
-        <div role="tabpanel" class="tab-pane active" id="<%= index %>">
-            <table class="table">
-                <tr>
-                  <td></td>
-                  <% @partweeks.each do |partweek| %>
-                    <td><%= partweek.week_name %></td>
-                  <% end %>    
-                </tr>
-                <% @parttimes.each do |parttime| %>
-                  <tr>
-                    <td style="height:60px;width:150px;"><%= parttime.start_time.strftime("%H:%M")+"~"+parttime.end_time.strftime("%H:%M") %></td>
-                    <% @partweeks.each do |partweek| %>
-                      <td>
-                        <% @run=show_work(parttime.part_number,partweek.day_number,group.group_name) %>
-                        <% if @run.blank? %>
-                          <%= "" %>
-                        <% else %>
-                          <%= @run.course_name %><br/>
-                          <%= @run.teach_name %><br/>
-                        <% end %>
-                      </td>
-                    <% end %>
-                  </tr>
-                <% end %>
-            </table>
-        </div>
-      <% else %>
-        <div role="tabpanel" class="tab-pane" id="<%= index %>">
-            <table class="table">
-                <tr>
-                  <td></td>
-                  <% @partweeks.each do |partweek| %>
-                    <td><%= partweek.week_name %></td>
-                  <% end %>    
-                </tr>
-                <% @parttimes.each do |parttime| %>
-                  <tr>
-                    <td style="height:60px;width:150px;"><%= parttime.start_time.strftime("%H:%M")+"~"+parttime.end_time.strftime("%H:%M") %></td>
-                    <% @partweeks.each do |partweek| %>
-                      <td>
-                        <% @run=show_work(parttime.part_number,partweek.day_number,group.group_name) %>
-                        <% if @run.blank? %>
-                          <%= "" %>
-                        <% else %>
-                          <%= @run.course_name %><br/>
-                          <%= @run.teach_name %><br/>
-                        <% end %>
-                      </td>
-                    <% end %>
-                  </tr>
-                <% end %>
-            </table>
-        </div>  
-      <% end %>
-    <% end %>
+      </table>    
+    </div>
   </div>
 </div>
 

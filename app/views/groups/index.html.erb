@@ -1,26 +1,5 @@
-<h1>班級清單</h1>
-<%= link_to '新增班級', new_group_path,class:'btn btn-info' %><br/><br/>
-
-
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>班級名稱</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @groups.each do |group| %>
-      <tr>
-        <td><%= group.group_name %></td>
-        <td><%= link_to '刪除',group_path(group), method: :delete, data: { confirm: '你確定要刪除?' },class:"btn btn-info" %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br/><br/><br/><br/>
+<br/><br/>
+<%= link_to '後台', works_path,class:"btn btn-info" %><br/><br/>
 
 <div role="tabpanel">  
   <ul class="nav nav-tabs" role="tablist">
