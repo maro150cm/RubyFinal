@@ -15,13 +15,15 @@
       <h1>節次清單</h1>
       <%= link_to '新增', new_parttime_path,class:"btn btn-info" %><br/>
       <table class="table table-hover">
-        <tr>
-          <td>節次</td>
-          <td>開始時間</td>
-          <td>結束時間</td>
-          <td></td>
-          <td></td>
-        </tr>
+        <thead>
+          <tr>
+            <th>節次</th>
+            <th>開始時間</th>
+            <th>結束時間</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
         <% @parttimes.each do |parttime| %>
           <tr>
               <td><%= parttime.part_number %></td>
@@ -37,12 +39,14 @@
       <h1>天數清單</h1>
       <%= link_to '新增', new_partweek_path,class:"btn btn-info" %><br/>
       <table class="table table-hover">
-        <tr>
-          <td>天數</td>
-          <td>星期</td>
-          <td></td>
-          <td></td>
-        </tr>
+        <thead>  
+          <tr>
+            <th>天數</th>
+            <th>星期</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
         <% @partweeks.each do |partweek| %>
           <tr>
             <td><%= partweek.day_number %></td>
@@ -131,15 +135,17 @@
       <h1>排課清單</h1>
       <%= link_to '新增', new_work_path,class:"btn btn-info" %><br/>
       <table class="table table-hover">
-        <tr>
-          <td>班級</td>
-          <td>課程</td>
-          <td>老師</td>
-          <td>星期</td>
-          <td>節次</td>
-          <td></td>
-          <td></td>
-        </tr>
+        <thead>
+          <tr>
+            <th>班級</th>
+            <th>課程</th>
+            <th>老師</th>
+            <th>星期</th>
+            <th>節次</th>
+            <th></th>
+            <th></th>
+          </tr>
+        <thead>
         <% @works.each do |work| %>
           <tr>
             <td><%= work.group.try(:group_name) %></td>
